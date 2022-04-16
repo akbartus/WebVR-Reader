@@ -1,15 +1,18 @@
 # Interactive Reading Environment in Web-Based Virtual Reality
 
+
 ### **Description / Rationale**
 Virtual reality can be used for delivering information effectively, while fostering immersion. Reading applications created specifically in web-based virtual reality, can offer significant advantages: they can make virtual reality more accessible, because they are served over the web and are compatible with most if not all VR devices. 
 
 The present project is about the reading platform that allows users to read their own pdf materials in web-based virtual reality setting that features both interactivity and playability, created thanks to various artificial intelligence/machine learning tools. 
+
 
 ### **Goals**
 The goals of the project are: 
 * To demonstrate new type of reading experience. 
 * To demonstrate advanced capabilities of web VR.
 * To create accessible VR reading experience.
+
 
 ### **Structure**
 The reading platform offers 4 modes for reading: 
@@ -47,6 +50,7 @@ In this mode users will be able to generate a quiz game based on any page of a .
 * **Export 3D.** Enabled on click. When notebook is not visible does not work. Generates 3D model of the notebook.
 
 ![Mode 4](assets/mode4.png)
+
 
 ### **Tech Stack**
 The following libraries/tools/frameworks used in the project

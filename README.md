@@ -34,9 +34,11 @@ In this mode the focus is on creation of assistive tools, which improve the read
 * **Text to speech.** Does not work in Oculus Browser. Enabled on click. On the back it uses Web Speech API
 * **Speech to text.** Does not work in Oculus Browser. Enabled on click. On the back it uses Web Speech API
 * **Keyboard.** Enabled on click
-* **A Wikipedia article summary page.** Enabled if < 3 words are typed. Appears to the left of the screen. On the back it is powered by Wikijs.
-* **Q & A system.** Enabled if > 3 words are typed in the form of a question. Appears to the left of the screen. On the back it is powered by Tensorflow.js QA model.
-* **Text summatization.** 
+* **A Wikipedia article summary page.** Enabled if < 3 words are typed. Can be used to find out what particular term means. Appears to the left of the screen. On the back it is powered by Wikijs API.
+* **Q & A system.** Enabled if > 3 words are typed in the form of a question. The question should be asked in relation to that particular pdf page. Appears to the left of the screen. On the back it is powered by Tensorflow.js QA model.
+* **Text summatization.** Enabled on click. Can be used on every page to get a summary of the page. On the backend it uses Text Summarization Model API.  
+
+![mode2](assets/mode3.png)
 
 **Web**
 1. Copy the repository to your development environment.

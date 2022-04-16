@@ -1,0 +1,415 @@
+#intro {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #40507f;
+    z-index: 5;
+    overflow-y: auto;
+}
+
+
+
+#intro2 {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #40507f;
+    z-index: 4;
+}
+
+#intro3 {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #40507f;
+    z-index: 3;
+}
+
+#intro4 {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #40507f;
+    z-index: 2;
+}
+
+#imagePreview {
+    display: none;
+}
+
+#uploader {
+    display: block;
+    width: 255px;
+}
+
+#file-upload {}
+
+.closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.environment {
+    display: block;
+    position: relative;
+    top: 30%;
+    font: 20px 'Voces', sans-serif;
+    color: #FFF;
+}
+
+.hidden {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #40507f;
+    z-index: 5;
+    overflow-y: auto;
+    display: none;
+}
+
+.title {
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    font-size: 23px;
+    margin-bottom: 20px;
+}
+
+#selectFrom {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    text-align: center;
+    width: 100%;
+    /*   border: 1px solid black; /*This is just to see where the div container is */
+}
+
+.selectFrom2 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.selectFrom3 {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    text-align: center;
+    width: 100%;
+}
+
+.icons {
+    display: inline-block;
+    float: none;
+    margin: 10px;
+    border: 2px solid #fff;
+    box-shadow: 0 3px 10px rgb(255 255 255 / 0.3);
+}
+
+.icons:hover {
+    cursor: pointer;
+}
+
+
+input[type='file'],
+button {
+    font-size: 20px;
+    border: 2px solid #fff;
+    color: #fff;
+    box-shadow: 0 3px 10px rgb(255 255 255 / 0.5);
+}
+
+.subtitle {
+    font-size: 16px;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    margin-top: 10px;
+}
+
+
+
+#overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 1);
+    z-index: 2;
+    cursor: pointer;
+    display: none
+}
+
+#loader {
+    z-index: 3;
+    position: relative;
+    top: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font: 20px 'Voces', sans-serif;
+    color: #FFF;
+}
+
+#prev {
+    display: none;
+    font-size: 20px;
+}
+
+#next {
+    display: none;
+    font-size: 20px;
+}
+
+
+button {
+    display: inline-block;
+}
+
+#content {}
+
+/* Pages Styles*/
+/* #content > img:nth-child(odd) {
+    transform: skewY(2deg);
+    margin: 15px 0px;
+    height: 700px;
+    border-right: 5px solid #ddd;
+}
+#content > img:nth-child(even) {
+    transform: skewY(-2deg);
+    margin: 15px 0px;
+    height: 700px;
+} */
+
+
+/* #overlay{
+    display: block; 
+    position: fixed; 
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2; 
+    background: black
+} */
+
+
+
+.navButton {}
+
+#go_previous,
+#go_next,
+#type,
+#zoom_in,
+#zoom_out,
+#read,
+#stop {
+    background: rgba(62, 62, 61, 0.6);
+    border-color: rgba(62, 62, 61, 0.1);
+    border-style: solid;
+}
+
+#go_previous {
+    display: none;
+}
+
+
+
+/* Text Summary Window */
+#tsWrapper {
+    overflow: hidden;
+    height: 2190px;
+    width: 1400px;
+    color: #000;
+    display: none;
+}
+
+#tsSummary {
+    margin-top: 40%;
+    font-size: 60px;
+    padding: 5px 10px;
+
+}
+
+/* QA Window */
+#qaWrapper {
+    overflow: hidden;
+    height: 1450px;
+    width: 900px;
+    color: #000;
+    display: none;
+}
+
+#qaQuestion,
+#qaAnswer {
+    margin-top: 50%;
+    font-size: 60px;
+
+}
+
+/* Wiki Window */
+#wikiText {
+    font-size: 60px;
+    padding: 10px;
+
+}
+
+#scrollUp,
+#scrollDown {
+    font-size: 60px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    width: 90%;
+    background-color: rgba(62, 62, 61, 1);
+    color: #fff;
+    display: none;
+}
+
+#informationCard {
+    background: rgba(240, 216, 2, 1);
+    width: 90%;
+    font-size: 60px;
+    text-align: center;
+    padding: 15px 0px;
+    display: none;
+
+}
+
+.informationCard {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+
+}
+
+#wikiWrapper {
+    overflow: hidden;
+    height: 2190px;
+    width: 1400px;
+    background: #efefef;
+    display: none;
+}
+
+#wikiWindow {
+    width: 95%;
+    padding: 5px;
+}
+
+#wikiImage {
+    display: block;
+    object-fit: cover;
+    margin: 0 auto;
+    border: 2px solid rgb(0, 0, 0);
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+/* Printed QA */
+#printedQuestions {}
+
+.notepad {
+    width: 100%;
+    max-width: 620px;
+    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.15);
+    border-radius: 0 0 10px 10px;
+    overflow: hidden;
+}
+
+.top {
+    width: 100%;
+    height: 50px;
+    background: #333;
+    border-radius: 5px 5px 0 0;
+    text-align: center;
+    color: #fff;
+    font-size: 26px;
+    padding-top: 10px;
+}
+
+.paper {
+    height: 600px;
+    width: 600px;
+    overflow: hidden;
+    padding: 35px 20px;
+    background: repeating-linear-gradient(#f1ede9, #f1ede9 31px, #94acd4 31px, #94acd4 32px);
+    font-family: "Shadows Into Light", cursive;
+    line-height: 32px;
+    outline: 0;
+    font-size: 22px;
+}
+
+.printedQ {
+    margin-bottom: 22px;
+}
+
+/* Question Generator, Quiz  */
+#quizWrapper {
+    overflow: hidden;
+    height: 500px;
+    width: 400px;
+    color: #fff;
+
+}
+
+#totalScore {
+    margin-top: 10px;
+    font-weight: bold;
+    line-height: 30px;
+    font-size: 20px;
+}
+
+.questions {
+    margin-top: 10px;
+    font-weight: bold;
+    line-height: 30px;
+    display: none;
+    font-size: 20px;
+}
+
+.answers {
+    font-weight: normal;
+    cursor: pointer;
+    display: table;
+    padding: 5px;
+}
+
+.answers:hover {
+    background: orange;
+    color: #fff;
+    border-radius: 15px;
+}
+
+.letter {
+    padding: 5px;
+}

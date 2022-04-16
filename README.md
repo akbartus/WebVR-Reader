@@ -17,7 +17,7 @@ The reading platform offers 4 modes for reading:
 **1. User-generated reading environment (Simple Mode)** 
 In this mode users can use their own 360 photos or choose the default 3D model of a room or select one of five 3d environments and then upload a pdf file. The respective sound will be added automatically based on random selection (for now there are three types of sound: arts, tale and culture). In addition, there is a possibility to apply weather effects and toggle sound.
 
-![mode1](assets/mode1.png)
+![Mode 1](assets/mode1.png)
 
 
 **2. User + AI generated reading environment (Assisted Mode)** 
@@ -27,7 +27,7 @@ In this mode users are given option to select from two options:
 On the back there is NLP task which is text classification (Zero-Shot Classification API through HuggingFace).
 In addition, there is a possibility to apply weather effects and toggle sound. 
 
-![mode2](assets/mode2.png)
+![Mode 2](assets/mode2.png)
 
 **3. Interactive Reading with AI and other tools (Interactive Mode)** 
 In this mode the focus is on creation of assistive tools, which improve the reading experience. The respective sound will be added automatically based on random selection (for now there are three types of sound: arts, tale and culture). So, as soon as users load their .pdf file, they appear in the default environment with the following elements:
@@ -38,7 +38,7 @@ In this mode the focus is on creation of assistive tools, which improve the read
 * **Q & A system.** Enabled if > 3 words are typed in the form of a question. The question should be asked in relation to that particular pdf page. Appears to the left of the screen. On the back it is powered by Tensorflow.js QA model.
 * **Text summatization.** Enabled on click. Can be used on every page to get a summary of the page. On the backend it uses Text Summarization Model API.  
 
-![mode2](assets/mode3.png)
+![Mode 3](assets/mode3.png)
 
 **4. Game Environment (Game Mode)**
 In this mode users will be able to generate a quiz game based on any page of a .pdf file. It takes a little bit of time to load this mode first. It contains the following elements:
@@ -46,7 +46,11 @@ In this mode users will be able to generate a quiz game based on any page of a .
 * **Notebook.** Enabled on click. When no quiz is generated shows blank. Otherwise shows first five questions ans answers.
 * **Export 3D.** Enabled on click. When notebook is not visible does not work. Generates 3D model of the notebook.
 
-![mode2](assets/mode4.png)
+![Mode 4](assets/mode4.png)
+
+### **Tech Stack**
+![Tech Stack](assets/teckStack.png)
+
 
 ### **Demo**
 To see the application at work: [Demo application](https://www.vr-reader.com)

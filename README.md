@@ -57,6 +57,39 @@ The following libraries/tools/frameworks used in the project:
 
 ![Tech Stack](assets/techStack.png)
 
+### **Credits**
+<p>All icons used in this project were taken from <a href="https://www.veryicon.com/">VeryIcon.com</a> website
+        with no attribution required.</p>
+      <p>Default 3D model of the room (used in simple mode and interactive mode) was created by <b>Francesco
+          Coldesina</b>, and taken from <a
+          href="https://sketchfab.com/3d-models/big-room-0b5da073be88481091dbef7e55f1d180">Sketchfab.com</a></p>
+      <p>3D model of the winter loft (used in game mode) was created by <b>Elin</b>, and taken from <a
+          href="https://sketchfab.com/3d-models/winter-loft-582e75361edb4e95b20df20c3a8681bf">Sketchfab.com</a></p>
+      <p>All 360 photo assets (used in AI assisted mode) used in this project were taken from <a
+          href="https://polyhaven.com/">PolyHeaven.com</a> website
+        with no attribution required.</p>
+      <p>All sound assets (used in all modes) used in this project were taken from <a
+          href="https://freesound.org/">FreeSound.org</a> website
+        with no attribution required.</p>
+      <p>The following A-Frame components were used:  
+        <a href="https://github.com/supermedium/aframe-environment-component">A-Frame Environment Component</a>,
+        <a href="https://github.com/IdeaSpaceVR/aframe-particle-system-component">A-Frame Particle System Component</a>,
+        <a href="https://github.com/supereggbert/aframe-htmlembed-component">A-Frame HTML Embed Component</a>,
+        <a href="https://github.com/kikoano/web2vr">Web2VR Component</a>,
+        <a href="https://github.com/fernandojsg/aframe-gltf-exporter-component">GLTF Exporter Component</a>,
+        <a href="https://github.com/stemkoski/A-Frame-Examples/tree/master/js">Raycaster Extras, Player Move and
+          Controller Listener by Lee Stemkoski</a>,
+        <a href="https://github.com/WandererOU/aframe-keyboard">A-Frame Keyboard Component</a>.
+      </p>
+      <p>The following libraries, plugins and APIs were used:
+        <a href="https://aframe.io/">A-Frame (Web VR)</a>,
+        <a href="https://mozilla.github.io/pdf.js/">Pdf.js (Pdf Rendering)</a>,
+        <a href="https://www.tensorflow.org/js">Tensorflow.js (Q&A, Image Classification)</a>,
+        <a href="https://teachablemachine.withgoogle.com/">Teachable Machine (Image Classification)</a>,
+        <a href="https://ainize.ai/">question generation, text summarization (API)</a>,
+        <a href="https://huggingface.co/">Zero-shot text classification (API)</a>,
+        <a href="https://www.npmjs.com/package/wikijs">WikiJs (API)</a>.
+      </p>
 
 ### **Demo**
 To see the application at work: [Demo application](https://www.vr-reader.com)

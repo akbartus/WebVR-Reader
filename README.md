@@ -53,7 +53,8 @@ In this mode users will be able to generate a quiz game based on any page of a .
 
 
 ### **Tech Stack**
-The following libraries/tools/frameworks used in the project
+The following libraries/tools/frameworks used in the project:
+
 ![Tech Stack](assets/techStack.png)
 
 

@@ -15,15 +15,17 @@ The goals of the project are:
 The reading platform offers 4 modes for reading: 
 
 **1. User-generated reading environment (Simple Mode)** 
-In this mode users can use their own 360 photos or choose the default 3D model of a room or select one of five 3d environments and then upload a pdf file. The respective sound will be added automatically based on random selection (for now there are three types of sound: arts, tale and culture).
+In this mode users can use their own 360 photos or choose the default 3D model of a room or select one of five 3d environments and then upload a pdf file. The respective sound will be added automatically based on random selection (for now there are three types of sound: arts, tale and culture). In addition, there is a possibility to apply weather effects and toggle sound.
 
 ![mode1](assets/mode1.png)
 
 
 **2. User + AI generated reading environment (Assisted Mode)** 
-In this mode users are given option to select from two options. 
-a) They load their 360 photos and then .pdf file and computer vision identifies the photo and loads respective sound. For now there are 4 photo types, which can be identified: city, room, mountain, forest.
-b) They load a pdf file and AI powered algorithm identifies the category it belongs to and loads respective 360 photo and sound. The following categories can be identified: computer, sports, biology, fairytale, society, politics, ecology, culture, cuisine, fishing, medicine.
+In this mode users are given option to select from two options: 
+a) They load their 360 photos and then .pdf file and computer vision identifies the photo and loads respective sound. For now there are 4 photo types, which can be identified: city, room, mountain, forest. On the back the task is Image Classification (created by using Tensorflow.js + ImageNet + Teachable Machine).
+b) They load a pdf file and AI powered algorithm identifies the category it belongs to (based on the first page of a pdf file) and loads respective 360 photo and sound. The following categories can be identified: computer, sports, biology, fairytale, society, politics, ecology, culture, cuisine, fishing, medicine.
+On the back there is NLP task which is text classification (Zero-Shot Classification API through HuggingFace).
+In addition, there is a possibility to apply weather effects and toggle sound. 
 
 ![mode2](assets/mode2.png)
 

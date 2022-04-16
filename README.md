@@ -1,5 +1,5 @@
 # Interactive Reading Environment in Web-Based Virtual Reality
-
+![Mode 1](assets/screenshot.png)
 
 ### **Description / Rationale**
 Virtual reality can be used for delivering information effectively, while fostering immersion. Reading applications created specifically in web-based virtual reality, can offer significant advantages: they can make virtual reality more accessible, because they are served over the web and are compatible with most if not all VR devices. 

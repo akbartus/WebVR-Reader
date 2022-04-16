@@ -22,14 +22,21 @@ In this mode users can use their own 360 photos or choose the default 3D model o
 
 **2. User + AI generated reading environment (Assisted Mode)** 
 In this mode users are given option to select from two options: 
-- They load their 360 photos and then .pdf file and computer vision identifies the photo and loads respective sound. For now there are 4 photo types, which can be identified: city, room, mountain, forest. On the back the task is Image Classification (created by using Tensorflow.js + ImageNet + Teachable Machine).
-- They load a pdf file and AI powered algorithm identifies the category it belongs to (based on the first page of a pdf file) and loads respective 360 photo and sound. The following categories can be identified: computer, sports, biology, fairytale, society, politics, ecology, culture, cuisine, fishing, medicine.
+* They load their 360 photos and then .pdf file and computer vision identifies the photo and loads respective sound. For now there are 4 photo types, which can be identified: city, room, mountain, forest. On the back the task is Image Classification (created by using Tensorflow.js + ImageNet + Teachable Machine).
+* They load a pdf file and AI powered algorithm identifies the category it belongs to (based on the first page of a pdf file) and loads respective 360 photo and sound. The following categories can be identified: computer, sports, biology, fairytale, society, politics, ecology, culture, cuisine, fishing, medicine.
 On the back there is NLP task which is text classification (Zero-Shot Classification API through HuggingFace).
 In addition, there is a possibility to apply weather effects and toggle sound. 
 
 ![mode2](assets/mode2.png)
 
 **3. Interactive Reading with AI and other tools (Interactive Mode)** 
+In this mode the focus is on creation of assistive tools, which improve the reading experience. So, as soon as users load their .pdf file, they appear in the default environment with the following elements:
+* **Text to speech.** Does not work in Oculus Browser. Enabled on click. On the back it uses Web Speech API
+* **Speech to text.** Does not work in Oculus Browser. Enabled on click. On the back it uses Web Speech API
+* **Keyboard.** Enabled on click
+* **A Wikipedia article summary page.** Enabled if < 3 words are typed. Appears to the left of the screen. On the back it is powered by Wikijs.
+* **Q & A system.** Enabled if > 3 words are typed in the form of a question. Appears to the left of the screen. On the back it is powered by Tensorflow.js QA model.
+* **Text summatization.** 
 
 **Web**
 1. Copy the repository to your development environment.

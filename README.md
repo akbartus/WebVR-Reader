@@ -5,22 +5,18 @@ Virtual reality can be used for delivering information effectively, while foster
 
 The present project is about the reading platform that allows users to read their own pdf materials in web-based virtual reality setting that features both interactivity and playability, created thanks to various artificial intelligence/machine learning tools. 
 
-### **GoalS**
+### **Goals**
 The goals of the project are: 
 * To demonstrate new type of reading experience. 
 * To demonstrate advanced capabilities of web VR.
 * To create accessible VR reading experience.
 
-### **Features**
-The application consist of two parts: 
-1. train.html - It is used to train images for classification, save training results and test them.
-2. load.html - It is used to load trained image classifier.
-
 ### **Structure**
 The reading platform offers 4 modes for reading: 
 
 **1. User-generated environment (Simple Mode)** 
-In this mode users can use theiw own 360 photos or choose the default 3D model of a room or select one of five 3d environments and then upload a pdf file.
+In this mode users can use theiw own 360 photos or choose the default 3D model of a room or select one of five 3d environments and then upload a pdf file. The respective sound will be added automatically based on random selection (for now there are three types of sound: arts, tale and culture).
+![alt text](assets/mode1.png)
 
 
 1. Copy the repository to your development environment.

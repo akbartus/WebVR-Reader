@@ -1,8 +1,14 @@
 # Interactive Reading Environment in Web-Based Virtual Reality
 
 ### **Description / Rationale**
-This is the project aimed at demonstrating a) a new type of reading experience, that occurs in web-based Virtual reality 
-Present application aims to fulfill this small gap by adding saving and loading capability for trained image classifiers.  
+Virtual reality can be used for delivering information effectively, while fostering immersion. Reading applications created specifically in web-based virtual reality, can offer significant advantages: they can make virtual reality more accessible, because they are served over the web and are compatible with most if not all VR devices. 
+The goal of this project is threefold: 
+* Demonstrate new type of reading experience. 
+* Demonstrate advanced capabilities of web VR.
+* Create accessible VR reading experience
+ 
+![image](https://user-images.githubusercontent.com/54757270/163683395-9b45e11e-aa09-4741-9d45-732d42fc65a4.png)
+
 
 
 ### **Features**

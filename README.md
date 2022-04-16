@@ -30,7 +30,7 @@ In addition, there is a possibility to apply weather effects and toggle sound.
 ![mode2](assets/mode2.png)
 
 **3. Interactive Reading with AI and other tools (Interactive Mode)** 
-In this mode the focus is on creation of assistive tools, which improve the reading experience. So, as soon as users load their .pdf file, they appear in the default environment with the following elements:
+In this mode the focus is on creation of assistive tools, which improve the reading experience. The respective sound will be added automatically based on random selection (for now there are three types of sound: arts, tale and culture). So, as soon as users load their .pdf file, they appear in the default environment with the following elements:
 * **Text to speech.** Does not work in Oculus Browser. Enabled on click. On the back it uses Web Speech API
 * **Speech to text.** Does not work in Oculus Browser. Enabled on click. On the back it uses Web Speech API
 * **Keyboard.** Enabled on click
@@ -40,13 +40,13 @@ In this mode the focus is on creation of assistive tools, which improve the read
 
 ![mode2](assets/mode3.png)
 
-**Web**
-1. Copy the repository to your development environment.
-2. Use "train.html" to train. Use "train.html" to train. Click on first button (idle) several times and train idle image. Click on second button several times (object1) and train second image and so on. 
-3. After you are confident with the results save your image classification using transfer learning. A file will be generated with the name of "weights.json".
-4. Refresh "train.html" page and load "weights.json" file to test if everything works ok.  
-5. Put "weights.json" into the same folder, where this application is.
-6. If test was successfull and previously trained images are recognized, put "weights.json" file into the same folder as the application on server. Use "load.html" file to load trained image classification.
+**4. Game Environment (Game Mode)**
+In this mode users will be able to generate a quiz game based on any page of a .pdf file. It takes a little bit of time to load this mode first. It contains the following elements:
+* **Quiz generator.** On the back it uses Question Generator model, which works in combination with WordVectors, which help to generate distractors (wrong answers). Enabled on click.
+* **Notebook.** Enabled on click. When no quiz is generated shows blank. Otherwise shows first five questions ans answers.
+* **Export 3D.** Enabled on click. When notebook is not visible does not work. Generates 3D model of the notebook.
+
+![mode2](assets/mode4.png)
 
 ### **Demo**
-To see the application: [Demo application](https://transferlearning.glitch.me/train.html)
+To see the application at work: [Demo application](https://www.vr-reader.com)

@@ -16,7 +16,7 @@ The reading platform offers 4 modes for reading:
 
 **1. User-generated environment (Simple Mode)** 
 In this mode users can use theiw own 360 photos or choose the default 3D model of a room or select one of five 3d environments and then upload a pdf file. The respective sound will be added automatically based on random selection (for now there are three types of sound: arts, tale and culture).
-<img src="assets/mode1.png" width="500">
+[[assets/mode1.png|width=500px]]
 
 
 1. Copy the repository to your development environment.

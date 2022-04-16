@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Reading Environment in Web-Based Virtual Reality, ver. 1.0</title>
+  <link rel="stylesheet" href="css/intro.css">
+</head>
+
+<body>
+  <div id="myOverlay">
+    <div id="header">
+      <img src="img/logo.png" style="width:200px">
+      <div id="projectTitle">Interactive Reading Environment <br />in web-based Virtual Reality</div>
+      <div id="start">Start</div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="block">
+      <div class="menu">
+        <img src="img/mode1.jpg" />
+        <figcaption>
+          <h2>Simple Mode<span></span></h2>
+          <p>Create own reading environment<br>which is comfortable for you</p>
+          <a href="1.html">Begin</a>
+        </figcaption>
+      </div>
+      <div class="menu">
+        <img src="img/mode2.jpg" />
+        <figcaption>
+          <h2>AI Assisted Mode<span></span></h2>
+          <p>Let AI help in creating reading<br>environment for you</p>
+          <a href="2.html">Begin</a>
+        </figcaption>
+      </div>
+      <div class="menu">
+        <img src="img/mode3.jpg" />
+        <figcaption>
+          <h2>Interactive Mode<span></span></h2>
+          <p>Make use of AI and other tools to make<br>your reading interactive</p>
+          <a href="3.html">Begin</a>
+        </figcaption>
+      </div>
+      <div class="menu">
+        <img src="img/mode4.jpg" />
+        <figcaption>
+          <h2>Game Mode<span></span></h2>
+          <p>Play a game based on<br>the material you read</p>
+          <a href="4.html">Begin</a>
+        </figcaption>
+      </div>
+    </div>
+    <div id="credits">Credits</div>
+  </div>
+
+  <div id="creditsOverlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="hideCreditsOverlay()">&times;</a>
+    <div id="text">
+      <p>All icons used in this project were taken from <a href="https://www.veryicon.com/">VeryIcon.com</a> website
+        with no attribution required.</p>
+      <p>Default 3D model of the room (used in simple mode and interactive mode) was created by <b>Francesco
+          Coldesina</b>, and taken from <a
+          href="https://sketchfab.com/3d-models/big-room-0b5da073be88481091dbef7e55f1d180">Sketchfab.com</a></p>
+      <p>3D model of the winter loft (used in game mode) was created by <b>Elin</b>, and taken from <a
+          href="https://sketchfab.com/3d-models/winter-loft-582e75361edb4e95b20df20c3a8681bf">Sketchfab.com</a></p>
+      <p>All 360 photo assets (used in AI assisted mode) used in this project were taken from <a
+          href="https://polyhaven.com/">PolyHeaven.com</a> website
+        with no attribution required.</p>
+      <p>All sound assets (used in all modes) used in this project were taken from <a
+          href="https://freesound.org/">FreeSound.org</a> website
+        with no attribution required.</p>
+      <p>The following A-Frame components were used:  
+        <a href="https://github.com/supermedium/aframe-environment-component">A-Frame Environment Component</a>,
+        <a href="https://github.com/IdeaSpaceVR/aframe-particle-system-component">A-Frame Particle System Component</a>,
+        <a href="https://github.com/supereggbert/aframe-htmlembed-component">A-Frame HTML Embed Component</a>,
+        <a href="https://github.com/kikoano/web2vr">Web2VR Component</a>,
+        <a href="https://github.com/fernandojsg/aframe-gltf-exporter-component">GLTF Exporter Component</a>,
+        <a href="https://github.com/stemkoski/A-Frame-Examples/tree/master/js">Raycaster Extras, Player Move and
+          Controller Listener by Lee Stemkoski</a>,
+        <a href="https://github.com/WandererOU/aframe-keyboard">A-Frame Keyboard Component</a>.
+      </p>
+      <p>The following libraries, plugins and APIs were used:
+        <a href="https://aframe.io/">A-Frame (Web VR)</a>,
+        <a href="https://mozilla.github.io/pdf.js/">Pdf.js (Pdf Rendering)</a>,
+        <a href="https://www.tensorflow.org/js">Tensorflow.js (Q&A, Image Classification)</a>,
+        <a href="https://teachablemachine.withgoogle.com/">Teachable Machine (Image Classification)</a>,
+        <a href="https://ainize.ai/">question generation, text summarization (API)</a>,
+        <a href="https://huggingface.co/">Zero-shot text classification (API)</a>,
+        <a href="https://www.npmjs.com/package/wikijs">WikiJs (API)</a>.
+      </p>
+    </div>
+  </div>
+
+</body>
+<script>
+
+  var start = document.getElementById("start");
+  var overlay = document.getElementById("myOverlay");
+  var creditsOverlay = document.getElementById("creditsOverlay");
+  var credits = document.getElementById("credits");
+  // On page load set pointer events to none to prevent clicking though overlay
+  document.querySelectorAll('[class*=block]').forEach(x => x.setAttribute("style", "pointer-events: none;"))
+  start.addEventListener("click", function () {
+    overlay.setAttribute("style", "display:none;")
+    document.querySelectorAll('[class*=block]').forEach(x => x.setAttribute("style", "pointer-events: auto;"))
+  })
+  credits.addEventListener("click", function () {
+    creditsOverlay.setAttribute("style", "display:block");
+    document.querySelectorAll('[class*=block]').forEach(x => x.setAttribute("style", "pointer-events: none;"))
+  })
+  function hideCreditsOverlay() {
+    creditsOverlay.setAttribute("style", "display:none");
+    document.querySelectorAll('[class*=block]').forEach(x => x.setAttribute("style", "pointer-events: auto;"))
+  }
+</script>
+
+</html>

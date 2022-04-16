@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Interactive Reading Environment in Web-Based Virtual Reality, ver. 1.0</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="js/pdf.min.js"></script>
+    <script src="js/aframe-inspector-plugin-recast.js"></script>
+    <!-- New Navigation -->
+    <script src="js/raycaster-extras.js"></script>
+    <script src="js/controller-listener.js"></script>
+    <script src="js/player-move.js"></script>
+
+    <script
+        src="https://unpkg.com/aframe-environment-component@1.3.1/dist/aframe-environment-component.min.js"></script>
+    <script src="js/aframe-particle-system-component.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+
+
+    </style>
+</head>
+
+<body>
+    <div id="intro">
+        <div class="environment">
+            <div class="title">1. Choose your reading environment</div>
+            <div id="selectFrom">
+                <img class="icons" onclick="showA();" src="img/presetEnvironment.png" width="250">
+                <img class="icons" onclick="showB();" src="img/loadImage.png" width="250">
+                <img class="icons" onclick="showC();" src="img/deault.png" width="250">
+            </div>
+        </div>
+
+        <div class="hidden">
+            <a href="javascript:void(0)" class="closebtn" onclick="hideWindow1()">&times;</a>
+            <div class="selectFrom3">
+                <div class="title">Please select 3D Environment</div>
+                <img class="icons" onclick="loadforest();" src="img/presetForest.jpg" width="300">
+                <img class="icons" onclick="loadtron();" src="img/presetTrone.jpg" width="300">
+                <img class="icons" onclick="loadegypt();" src="img/presetEgypt.jpg" width="300">
+                <img class="icons" onclick="loadthreetowers();" src="img/presetTowers.jpg" width="300">
+                <img class="icons" onclick="loadjapan();" src="img/presetJapan.jpg" width="300">
+            </div>
+        </div>
+        <div class="hidden">
+            <a href="javascript:void(0)" class="closebtn" onclick="hideWindow2()">&times;</a>
+            <div class="selectFrom2">
+                <div class="title">Please load a 360 photo</div>
+                <input onchange="loadPhotoLocally(this)" type="file">
+            </div>
+        </div>
+        <div class="hidden" onclick="hideWindow3()">
+            <a href="javascript:void(0)" class="closebtn" onclick="hideWindow3()">&times;</a>
+            <div class="selectFrom2">
+                <div class="title">Please select the environment</div>
+                <img class="icons" onclick="loadDefault();" src="img/mode3.jpg" width="300" style="display:block">
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <div id="intro2">
+        <div class="environment">
+            <div class="title">2. Please load a pdf file</div>
+            <div class="selectFrom">
+                <div id="my_pdf_viewer" style="text-align: center">
+                    <input id="pdf-upload" type="file" style="margin-top: 40px;" />
+                    <div id="canvas_container">
+                        <canvas id="pdf_renderer" style="display:none;"></canvas>
+                    </div>
+                </div>
+            </div>
+            <!-- Pdf viewer html tags -->
+
+
+        </div>
+    </div>
+
+    <div id="overlay">
+        <div id="loader">Loading material...</div>
+    </div>
+
+
+
+    <!-- Overlay for preloading and options -->
+    <div id="overlay">
+        <div id="loader" style="color: white;">Loading material...</div>
+    </div>
+
+
+
+
+    <!--A-Frame Scene. Create navMesh, add Draco decoder vr-mode-ui="enabled: false" -->
+    <a-scene inspector-plugin-recast gltf-model="dracoDecoderPath: decoder/" loading-screen="enabled: false">
+        <!-- Assets preload -->
+        <a-assets id="assets">
+            <a-asset-item id="3dEnvironment" src="3d/big_room.glb"></a-asset-item>
+            <img id="inImg" src="img/zoomIn.png">
+            <img id="outImg" src="img/zoomOut.png">
+            <img id="previousImg" src="img/left.png">
+            <img id="nextImg" src="img/right.png">
+            <img id="interfaceOn" src="img/interfaceOn.png">
+            <img id="interfaceOff" src="img/interfaceOff.png">
+            <img id="soundOn" src="img/soundOn.png">
+            <img id="soundOff" src="img/soundOff.png">
+            <img id="rain" src="img/rain.png">
+            <img id="snow" src="img/snow.png">
+            <img id="dust" src="img/dust.png">
+            <img id="effectOff" src="img/effectOff.png">
+        </a-assets>
+
+        <!-- Sound component -->
+        <a-entity id="soundlink" sound="" crossorigin="anonymous"></a-entity>
+        <!-- Particle Component -->
+        <a-entity id="particle" position="0 2.25 -15"></a-entity>
+        <!-- Environment Component -->
+        <a-entity id="scene"></a-entity>
+        <!-- Light component -->
+        <a-entity id="light"></a-entity>
+        <!-- Sky component -->
+        <a-sky id="photoBackground"></a-sky>
+
+        <!--Hidden NavMesh-->
+        <!-- <a-entity id="nav-mesh" gltf-model="3d/navmesh.gltf" nav-mesh rotation="0 0 0" position="0 0 0" visible="false">
+        </a-entity> -->
+        <!--3d Environment-->
+        <a-entity id="myEnvironment" gltf-model="#3dEnvironment" rotation="0 0 0" position="0 -2 0" scale="0.5 0.5 0.5">
+        </a-entity>
+        <!-- GroundPlane, necessary for NavMesh-->
+        <a-plane class="groundPlane" scale="2 2 2" color="#333" width="8" height="8" rotation="-90 0 0" material=""
+            geometry="" position="0 0.01 0" visible="false"></a-plane>
+
+
+        <!-- Player -->
+        <a-entity id="player" position="0 0 0" player-move="controllerListenerId: #controller-data;
+                     navigationMeshClass: groundPlane;">
+            <a-camera></a-camera>
+            <a-entity id="controller-data"
+                controller-listener="leftControllerId:  #left-controller; rightControllerId: #right-controller;">
+            </a-entity>
+            <a-entity id="left-controller" oculus-touch-controls="hand: left">
+            </a-entity>
+            <!-- experiment with raycasting interval; slight performance improvement but jittery appearance in world -->
+            <a-entity id="right-controller" oculus-touch-controls="hand: right" laser-controls="hand: right"
+                raycaster="objects: .raycaster-target, .navButton, .groundPlane; interval: 0;"
+                raycaster-extras="controllerListenerId: #controller-data; beamImageSrc: #gradient; beamLength: 0.5;">
+            </a-entity>
+        </a-entity>
+
+
+
+        <!-- Click events for mouse/laser-controls -->
+        <a-entity position="0 0 0" cursor="fuse: false; rayOrigin: mouse;" raycaster="objects: .navButton">
+        </a-entity>
+
+
+
+
+        <!-- Main Window -->
+        <a-entity id="mainWindow" position="0 1.11 -0.8" rotation="-10 0 0" raycaster-target="canGrab: true;"
+            geometry="primitive: plane; width: 0.8; height: 0.28"
+            material="color: #5475d4; transparent: true; opacity: 0.5; side:double" scale="1 1 1">
+            <!-- All buttons-->
+            <a-entity id="allButtons">
+                <a-entity id="zoom_in" class="navButton" geometry="primitive: plane;"
+                    material="src: #inImg; transparent: true; opacity: 1; alpha-test: 0.5" scale="0.08 0.08 0.08"
+                    position="-0.275 0.05 0.02"></a-entity>
+                <a-entity id="zoom_out" class="navButton" geometry="primitive: plane;"
+                    material="src: #outImg; transparent: true; opacity: 1; alpha-test: 0.5" scale="0.08 0.08 0.08"
+                    position="-0.175 0.05 0.02"></a-entity>
+
+                <a-entity id="go_previous" class="navButton" geometry="primitive: plane;"
+                    material="src: #previousImg; transparent: true; opacity: 1; alpha-test: 0.5" scale="0.08 0.08 0.08"
+                    position="-0.03 0.05 0.02"></a-entity>
+                <a-entity id="go_next" class="navButton" geometry="primitive: plane;"
+                    material="src: #nextImg; transparent: true; opacity: 1; alpha-test: 0.5" scale="0.08 0.08 0.08"
+                    position="0.07 0.05 0.02"></a-entity>
+
+                <a-entity id="current_page" geometry="primitive: plane; width: 0.18; height:0.08"
+                    text="value: 0; color: #000; align: center; width: 1; height: 0.5"
+                    material="transparent: true; opacity: 1; color: #fff" position="0.22 0.05 0.02"></a-entity>
+                <!-- Sound On/Off Button-->
+                <a-entity id="soundOnOff" class="navButton" geometry="primitive: plane;"
+                    material="src: #soundOn; transparent: true; opacity: 1; alpha-test: 0.5" scale="0.08 0.08 0.08"
+                    position="-0.175 -0.05 0.02"></a-entity>
+                <!-- Weather Effects -->
+                <a-entity id="rainOn" class="navButton" onclick="addRain()" geometry="primitive: plane;"
+                    material="src: #rain; transparent: true; opacity: 1; alpha-test: 0.5" scale="0.08 0.08 0.08"
+                    position="-0.03 -0.05 0.02"></a-entity>
+                <a-entity id="snowOn" class="navButton" onclick="addSnow()" geometry="primitive: plane;"
+                    material="src: #snow; transparent: true; opacity: 1; alpha-test: 0.5" scale="0.08 0.08 0.08"
+                    position="0.07 -0.05 0.02"></a-entity>
+                <a-entity id="dustOn" class="navButton" onclick="addDust()" geometry="primitive: plane;"
+                    material="src: #dust; transparent: true; opacity: 1; alpha-test: 0.5" scale="0.08 0.08 0.08"
+                    position="0.17 -0.05 0.02"></a-entity>
+                <a-entity class="navButton" onclick="effectOff()" geometry="primitive: plane;"
+                    material="src: #effectOff; transparent: true; opacity: 1; alpha-test: 0.5" scale="0.08 0.08 0.08"
+                    position="0.27 -0.05 0.02"></a-entity>
+            </a-entity>
+
+            <!-- Interface On/Off Button -->
+            <a-entity id="openClose" class="navButton" geometry="primitive: plane;"
+                material="src: #interfaceOn; transparent: true; opacity: 1; alpha-test: 0.5" scale="0.05 0.05 0.05"
+                position="-0.36 -0.099 0.01"></a-entity>
+
+            <!-- Create parent plane so that book can be grabbed -->
+            <a-entity raycaster-target="canGrab: true;" position="0 0.5 -1"
+                geometry="primitive: plane; width: 1; height: 1" material="transparent: true; opacity: 0">
+                <!-- Pdf file display -->
+                <a-image id="book" src="" visible="false" side="double" transparent="false"></a-image>
+            </a-entity>
+        </a-entity>
+        <!-- END -->
+        <!-- <button onclick="addRain();">Rain</button>
+        <button onclick="addSnow();">Snow</button>
+        <button onclick="addDust();">Dust</button>
+        <button onclick="noEffect();">No Effect</button> -->
+
+
+
+
+        <!-- <a-entity id="" position="2.5 1.6 -1" rotation="0 -45 0"
+            geometry="primitive: plane; width: 2.5; height: 0.8;"
+            text="color: #000; align: center; width: 1.5; height: 1.5"
+            material="transparent: true; opacity: 1; side: double"></a-entity> 
+        -->
+    </a-scene>
+
+</body>
+<script src="js/1_main.js"></script>
+
+</html>

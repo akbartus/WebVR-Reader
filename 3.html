@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Interactive Reading Environment in Web-Based Virtual Reality, ver. 1.0</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/qna"> </script>
+    <script src="js/pdf.min.js"></script>
+    <script src="js/web2vr.js"></script>
+    <!-- <script src="js/aframe-keyboard.min.js"></script> -->
+
+    <!-- New Navigation -->
+    <script src="js/raycaster-extras.js"></script>
+    <script src="js/controller-listener.js"></script>
+    <script src="js/player-move.js"></script>
+    <!-- A-Frame GLTF Exporter -->
+    <script src="js/aframe-gltf-exporter.js"></script>
+    <script src="js/gltf-exporter-component.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+
+    <div id="intro4">
+        <div class="environment">
+            <div class="title">Please load a pdf file</div>
+            <div class="selectFrom">
+                <div id="my_pdf_viewer" style="text-align: center">
+                    <input id="pdf-upload" type="file" style="margin-top: 40px;" />
+                    <div id="canvas_container">
+                        <canvas id="pdf_renderer" style="display:none;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Overlay for preloading and options -->
+    <!-- <div id="overlay" style="display: block; position: fixed; z-index: 2; background: black">
+        <div id="loader" style="color: white;">Loading material...</div>
+    </div> -->
+
+    <!-- Info Window -->
+    <div id="html">
+        <!-- Text Summary Window -->
+        <div id="tsWrapper">
+            <div id="tsSummary"></div>
+        </div>
+
+        <!--- Question Answer Window -->
+        <div id="qaWrapper">
+            <div id="qaQuestion"></div>
+            <div id="qaAnswer"></div>
+        </div>
+
+        <!-- Wikipedia window -->
+        <div id="scrollUp" class="navButton">Scroll Up</div>
+        <div id="informationCard"><img src="img/information.png" class="informationCard"> INFORMATION
+            CARD
+        </div>
+        <div id="wikiWrapper">
+            <div id="wikiWindow">
+                <img id="wikiImage">
+                <div id="wikiText"></div>
+            </div>
+        </div>
+        <div id="scrollDown" class="navButton">Scroll Down</div>
+    </div>
+
+    <!--A-Frame Scene. Create navMesh, add Draco decoder -->
+    <a-scene gltf-model="dracoDecoderPath: decoder/" loading-screen="enabled: false">
+        <!-- Assets preload -->
+        <a-assets id="assets">
+            <a-asset-item id="3dEnvironment" src="3d/big_room.glb"></a-asset-item>
+            <a-asset-item id="monitor_vertical" src="3d/monitor_vertical.glb"></a-asset-item>
+            <a-asset-item id="monitor_horizontal" src="3d/monitor_horizontal.glb"></a-asset-item>
+
+            <img id="inImg" src="img/zoomIn.png">
+            <img id="outImg" src="img/zoomOut.png">
+            <img id="previousImg" src="img/left.png">
+            <img id="nextImg" src="img/right.png">
+            <img id="interfaceOn" src="img/interfaceOn.png">
+            <img id="interfaceOff" src="img/interfaceOff.png">
+            <img id="soundOn" src="img/soundOn.png">
+            <img id="soundOff" src="img/soundOff.png">
+
+            <img id="typeImg" src="img/keyboard.png">
+            <img id="sttImg" src="img/stt.png">
+            <img id="ttsOn" src="img/tts_on.png">
+            <img id="ttsOff" src="img/tts_off.png">
+            <img id="summarize" src="img/summarize.png">
+        </a-assets>
+
+
+
+        <!-- Sound component -->
+        <a-entity id="soundlink" sound="" crossorigin="anonymous"></a-entity>
+        <!--Hidden NavMesh-->
+        <!-- <a-entity id="nav-mesh" gltf-model="3d/navmesh.gltf" nav-mesh rotation="0 0 0" position="0 0 0" visible="false">
+        </a-entity> -->
+        <!--3d Environment-->
+        <a-entity id="myEnvironment" gltf-model="#3dEnvironment" rotation="0 0 0" position="0 -2 0" scale="0.5 0.5 0.5">
+        </a-entity>
+        </a-entity>
+        <a-plane class="groundPlane" scale="2 2 2" color="#333" width="8" height="8" rotation="-90 0 0" material=""
+            geometry="" position="0 0.01 0" visible="false"></a-plane>
+
+        <!-- Player -->
+        <a-entity id="player" position="0 0 0" player-move="controllerListenerId: #controller-data;
+              navigationMeshClass: groundPlane;">
+            <a-camera></a-camera>
+            <a-entity id="controller-data"
+                controller-listener="leftControllerId:  #left-controller; rightControllerId: #right-controller;">
+            </a-entity>
+            <a-entity id="left-controller" oculus-touch-controls="hand: left">
+            </a-entity>
+            <!-- experiment with raycasting interval; slight performance improvement but jittery appearance in world -->
+            <a-entity id="right-controller" oculus-touch-controls="hand: right" laser-controls="hand: right"
+                raycaster="objects: .raycaster-target, .navButton, .collidable, .vr-interactable, .groundPlane; interval: 0;"
+                raycaster-extras="controllerListenerId: #controller-data; beamLength: 0.5;">
+            </a-entity>
+        </a-entity>
+
+
+
+        <!-- Click events for mouse/laser-controls -->
+        <a-entity position="0 0 0" cursor="fuse: false; rayOrigin: mouse;" raycaster="objects: .navButton, .collidable">
+        </a-entity>
+
+
+
+
+        <a-entity id="mainWindow" class="collidable" position="0 1.11 -0.8" rotation="-10 0 0"
+            raycaster-target="canGrab: true;" geometry="primitive: plane; width: 0.8; height: 0.28"
+            material="color: #5475d4; transparent: true; opacity: 0.5; side:double" scale="1 1 1">
+            <!-- All buttons-->
+            <a-entity id="allButtons">
+                <a-entity id="zoom_in" class="navButton" geometry="primitive: plane;"
+                    material="src: #inImg; transparent: true; opacity: 1; alpha-test: 0.5" scale="0.08 0.08 0.08"
+                    position="-0.275 0.05 0.02"></a-entity>
+                <a-entity id="zoom_out" class="navButton" geometry="primitive: plane;"
+                    material="src: #outImg; transparent: true; opacity: 1; alpha-test: 0.5" scale="0.08 0.08 0.08"
+                    position="-0.175 0.05 0.02"></a-entity>
+
+                <a-entity id="go_previous" class="navButton" geometry="primitive: plane;"
+                    material="src: #previousImg; transparent: true; opacity: 1; alpha-test: 0.5" scale="0.08 0.08 0.08"
+                    position="-0.03 0.05 0.02"></a-entity>
+                <a-entity id="go_next" class="navButton" geometry="primitive: plane;"
+                    material="src: #nextImg; transparent: true; opacity: 1; alpha-test: 0.5" scale="0.08 0.08 0.08"
+                    position="0.07 0.05 0.02"></a-entity>
+
+                <a-entity id="current_page" geometry="primitive: plane; width: 0.18; height:0.08"
+                    text="value: 0; color: #000; align: center; width: 1; height: 0.5"
+                    material="transparent: true; opacity: 1; color: #fff" position="0.22 0.05 0.02"></a-entity>
+                <!-- Sound On/Off Button-->
+                <a-entity id="soundOnOff" class="navButton" geometry="primitive: plane;"
+                    material="src: #soundOn; transparent: true; opacity: 1; alpha-test: 0.5" scale="0.08 0.08 0.08"
+                    position="-0.175 -0.05 0.02"></a-entity>
+
+
+                <!-- Keyboard-->
+                <a-entity id="type" class="navButton" geometry="primitive: plane;"
+                    material="src: #typeImg; transparent: true; opacity: 1; alpha-test: 0.5" scale="0.08 0.08 0.08"
+                    position="-0.03 -0.05 0.02" onclick="showHideKeyboard()"></a-entity>
+
+                <!-- STT -->
+                <a-entity id="stt" class="navButton" geometry="primitive: plane;"
+                    material="src: #sttImg; transparent: true; opacity: 1; alpha-test: 0.5" scale="0.08 0.08 0.08"
+                    position="0.07 -0.05 0.02"></a-entity>
+
+                <!-- TTS -->
+                <a-entity id="read" class="navButton" geometry="primitive: plane;"
+                    material="src: #ttsOff; transparent: true; opacity: 1; alpha-test: 0.5" scale="0.08 0.08 0.08"
+                    position="0.17 -0.05 0.02"></a-entity>
+
+
+
+                <!-- It works with onclick events! Or alternatively create universal click event on a-scene-->
+                <a-entity id="summarize" onclick="summarize()" class="navButton" geometry="primitive: plane;"
+                    material="src: #summarize; transparent: true; opacity: 1; alpha-test: 0.5"
+                    position="0.27 -0.05 0.02" scale="0.08 0.08 0.08"></a-entity>
+
+            </a-entity>
+
+            <!-- Interface On/Off Button -->
+            <a-entity id="openClose" class="navButton" geometry="primitive: plane;"
+                material="src: #interfaceOn; transparent: true; opacity: 1; alpha-test: 0.5" scale="0.05 0.05 0.05"
+                position="-0.36 -0.099 0.01"></a-entity>
+
+
+
+            <!-- Left Screen -->
+            <a-entity id="tabletVertical" raycaster-target="canGrab: true;" position="-2.5 0.5 0" rotation="0 45 7.5" scale="0 0 0">
+                <!-- Tablet PC -->
+                <a-entity gltf-model="#monitor_vertical" position="0 -1.67 0" rotation="0 -180 0" scale="7 8.2 7">
+                </a-entity>
+                <a-entity id="infoWindow" width="3" height="3" class="navButton">
+                    
+                </a-entity>
+            </a-entity>
+
+            <!-- Keyboard -->
+            <a-entity id="inputField" geometry="primitive: plane; width: 1.3; height: 0.13"
+                material="color: #3e3e3d; opacity: 0.5; transparent: true;" position="0 0.5 0.3" rotation="0 0 0"
+                scale="0 0 0">
+                <a-text id="input" font="dejavu" color="#fff" value="" scale="0.25 0.25 0.25" position="-0.62 0 0">
+                </a-text>
+            </a-entity>
+            <a-entity id="keyboard" position="-0.24 0.25 0.3" rotation="0 0 0" a-keyboard scale="0 0 0">
+            </a-entity>
+
+
+            <!-- Create parent plane so that book can be grabbed -->
+            <a-entity raycaster-target="canGrab: true;" position="0 0.5 -1"
+                geometry="primitive: plane; width: 1; height: 1"
+                material="transparent: true; opacity: 0; alpha-test: 0.5">
+                <!-- Pdf file display -->
+                <a-image id="book" src="" visible="false" side="double" transparent="false"></a-image>
+            </a-entity>
+        </a-entity>
+
+    </a-scene>
+
+</body>
+
+<script src="js/main_3.js"></script>
+<script src="js/wikiVR.js"></script>
+
+
+
+</html>

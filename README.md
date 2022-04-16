@@ -6,10 +6,6 @@ The goal of this project is threefold:
 * Demonstrate new type of reading experience. 
 * Demonstrate advanced capabilities of web VR.
 * Create accessible VR reading experience
- 
-![image](https://user-images.githubusercontent.com/54757270/163683395-9b45e11e-aa09-4741-9d45-732d42fc65a4.png)
-
-
 
 ### **Features**
 The application consist of two parts: 

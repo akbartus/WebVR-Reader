@@ -1,4 +1,4 @@
-# Interactive Reading Environment in Web-Based Virtual Reality
+# Interactive Reading Environment in Web-Based Virtual Reality (thesis project)
 ![Screenshot](assets/screenshot.jpg)
 
 ### **Description / Rationale**

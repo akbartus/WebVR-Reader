@@ -93,3 +93,6 @@ The following libraries/tools/frameworks used in the project:
 
 ### **Demo**
 To see the application at work: [Demo application](https://www.vr-reader.com)
+
+### **Update**
+Please report an issue if API Endpoint does not work. Sometimes it needs to be reloaded.

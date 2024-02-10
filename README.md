@@ -92,7 +92,7 @@ The following libraries/tools/frameworks used in the project:
       </p>
 
 ### **Demo**
-To see the application at work: [Demo application](https://www.vr-reader.com)
+To see the application at work: [Demo application](https://myvrreader.glitch.me/)
 
 ### **Update**
 Please report an issue if API Endpoint does not work. Sometimes it needs to be reloaded.
